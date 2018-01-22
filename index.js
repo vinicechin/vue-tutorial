@@ -3,7 +3,7 @@ new Vue({
   data: {
     counter: 0,
     x: 0,
-    y: 0
+    y: 0,
   },
   methods: {
     increase: function(step, event) {
