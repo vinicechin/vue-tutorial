@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Section 2 - Lecture 19</title>
+    <title>Section 2 - Lecture 20</title>
   </head>
   <body>
     <div id="app">
@@ -11,6 +11,7 @@
         Coordinates: {{ x }} / {{ y }}
         - <span v-on:mousemove.stop="">DEAD SPOT</span>
       </p>
+      <input type="text" v-on:keyup.space.enter="alertMe">
     </div>
 
     <script src="../vue.js"></script>
