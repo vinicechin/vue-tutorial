@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Section 1 - Lecture 2</title>
+    <title>Section 2 - Lecture 21</title>
   </head>
   <body>
     <div id="app">
-      <input type="text" v-on:input="changeTitle">
-      <p>{{ title }}</p>
-      
+      <button v-on:click="increase(2, $event)">Click me</button>
+      <p>{{ counter }}</p>
+      <p v-on:mousemove="updateCoordinates">
+        Coordinates: {{ x }} / {{ y }}
+        - <span v-on:mousemove.stop="">DEAD SPOT</span>
+      </p>
+      <input type="text" v-on:keyup.space.enter="alertMe">
     </div>
 
     <script src="../vue.js"></script>
