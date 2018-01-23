@@ -7,8 +7,11 @@
   <body>
     <div id="app">
       <div class="demo" @click="attach = !attach" :class="divClasses"></div>
-      <div class="demo" @click="attach = !attach" :class="{green: attach}"></div>
-      <div class="demo" @click="attach = !attach" :class="{blue: attach}"></div>
+      <div class="demo" :class="{green: attach}"></div>
+      <div class="demo" :class="color"></div>
+      <div class="demo" :class="[color, {red: attach}]"></div>
+      <hr>
+      <input type="text" v-model="color">
     </div>
 
     <script src="../vue.js"></script>
