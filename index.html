@@ -9,6 +9,10 @@
       <ul>
         <li v-for="(ingredient, i) in ingredients">{{ ingredient }} ({{ i }})</li>
       </ul>
+      <template v-for="(ingredient, index) in ingredients">
+        <h1>{{ ingredient }}</h1>
+        <p>{{ index }}</p>
+      </template>
     </div>
 
     <script src="../vue.js"></script>
