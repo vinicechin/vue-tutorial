@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Section 2 - Lecture 21</title>
+    <title>Section 2 - Lecture 25</title>
   </head>
   <body>
     <div id="app">
-      <button v-on:click="counter++">Increase</button>
-      <button v-on:click="counter--">Decrease</button>
-      <button v-on:click="secondCounter++">Increase Second</button>
-      <p>Counter: {{ counter }} | {{ secondCounter }}</p>
-      <p>Result: {{ result() }} | {{ output }}</p>
+      <button @click="changeLink">Click to Change Link</button>
+      <a :href="link">Link</a>
     </div>
 
     <script src="../vue.js"></script>
