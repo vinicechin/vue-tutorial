@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Section 2 - Lecture 21</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Section 2 - Lecture 30</title>
   </head>
   <body>
     <div id="app">
-      <button v-on:click="counter++">Increase</button>
-      <button v-on:click="counter--">Decrease</button>
-      <button v-on:click="secondCounter++">Increase Second</button>
-      <p>Counter: {{ counter }} | {{ secondCounter }}</p>
-      <p>Result: {{ result() }} | {{ output }}</p>
+      <div class="demo" :style="{'background-color': color}"></div>
+      <div class="demo" :style="myStyle"></div>
+      <div class="demo" :style="[myStyle, {height: width + 'px'}]"></div>
+      <hr>
+      <input type="text" v-model="color">
+      <input type="text" v-model="width">
     </div>
 
     <script src="../vue.js"></script>
