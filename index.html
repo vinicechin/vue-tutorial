@@ -2,16 +2,16 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="index.css">
-    <title>Section 2 - Lecture 26</title>
+    <title>Section 2 - Lecture 29</title>
   </head>
   <body>
     <div id="app">
-      <div class="demo" @click="attach = !attach" :class="divClasses"></div>
-      <div class="demo" :class="{green: attach}"></div>
-      <div class="demo" :class="color"></div>
-      <div class="demo" :class="[color, {red: attach}]"></div>
+      <div class="demo" :style="{'background-color': color}"></div>
+      <div class="demo" :style="myStyle"></div>
+      <div class="demo" ></div>
       <hr>
       <input type="text" v-model="color">
+      <input type="text" v-model="width">
     </div>
 
     <script src="../vue.js"></script>
