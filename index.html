@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Section 2 - Lecture 25</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Section 2 - Lecture 26</title>
   </head>
   <body>
     <div id="app">
-      <button @click="changeLink">Click to Change Link</button>
-      <a :href="link">Link</a>
+      <div class="demo" @click="attach = !attach" :class="{red: attach}"></div>
+      <div class="demo" @click="attach = !attach" :class="{green: attach}"></div>
+      <div class="demo" @click="attach = !attach" :class="{blue: attach}"></div>
     </div>
 
     <script src="../vue.js"></script>
