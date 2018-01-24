@@ -1,53 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Monster Slayer</title>
-  <link rel="stylesheet" href="foundation.min.css">
-  <link rel="stylesheet" href="index.css">
-</head>
-<body>
-  <div id="app">
-    <section class="row">
-      <div class="small-6 columns">
-        <h1 class="text-center">YOU</h1>
-        <div class="healthbar">
-          <div class="healthbar text-center" :style="playerHealthStyle" style="background-color: green; margin: 0; color: white;">
-            {{ playerHealth }}
-          </div>
-        </div>
-      </div>
-      <div class="small-6 columns">
-        <h1 class="text-center">MONSTER</h1>
-        <div class="healthbar">
-          <div class="healthbar text-center" :style="monsterHealthStyle" style="background-color: green; margin: 0; color: white;">
-            {{ monsterHealth }}
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="row controls" v-show="!isStarted">
-      <div class="small-12 columns">
-        <button id="start-game" @click="isStarted = !isStarted">START NEW GAME</button>
-      </div>
-    </section>
-    <section class="row controls" v-show="isStarted">
-      <div class="small-12 columns">
-        <button id="attack" @click="playTurn()">ATTACK</button>
-        <button id="special-attack" @click="playTurn()">SPECIAL ATTACK</button>
-        <button id="heal" @click="playTurn()">HEAL</button>
-        <button id="give-up" @click="playTurn()">GIVE UP</button>
-      </div>
-    </section>
-    <section class="row log" v-show="hasLogs">
-      <div class="small-12 columns">
-        <ul>
-          <li v-for="action in log" :class="{ 'player-turn': action.isPlayer, 'monster-turn': !action.isPlayer }">
-            {{ action.message }}
-          </li>
-        </ul>
-      </div>
-    </section>
-  </div>
+  <head>
+    <title>Section 5 Lecture 63</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ title }}</h1>
+      <button @click="show">Show Paragraph</button>
+      <p v-if="showParagraph">This is not always visible</p>
+    </div>
 
     <script src="https://npmcdn.com/vue/dist/vue.js"></script>
     <script src="index.js"></script>
