@@ -3,6 +3,7 @@ new Vue({
   data: {
     isStarted: false,
     isFirstMove: true,
+    isWaitingRestart: false,
     log: [],
     playerHealth: 100,
     monsterHealth: 100
@@ -25,20 +26,24 @@ new Vue({
       }
     },
     monsterHealthStyle: function() {
-      var backColor = 'green';
-      if (this.monsterHealth <= 50 & this.monsterHealth > 20) {
-        backColor = 'orange';
-      } else if (this.monsterHealth <= 20) {
-        backColor = 'red';
-      }
       return {
         width: this.monsterHealth + '%',
-        backgroundColor: backColor
+        backgroundColor: this.getBarColor(this.monsterHealth)
       }
     }
   },
 
   methods: {
+    getBarColor(health) {
+      if (health <= 50 & health > 20) {
+        return 'orange';
+      } else if (health <= 20) {
+        return 'red';
+      } else {
+        return 'green';
+      }
+    },
+
     playTurn: function() {
       switch (event.target.id) {
         case 'attack': 
@@ -90,8 +95,8 @@ new Vue({
     heal: function() {
       var value = this.playDice();
       this.logAction(true, false, value);
-      if (value < 8) {
-        value += 2;
+      if (value < 5) {
+        value += 5;
       }
       value += this.playerHealth;
       if (value > 100) {
@@ -111,8 +116,8 @@ new Vue({
       var vm = this;
       var value = this.playDice();
       this.logAction(false, true, value);
-      value = this.playerHealth - value;
       setTimeout(function() {
+        value = vm.playerHealth - value;
         if (value <= 0 & vm.isStarted) {
           vm.playerHealth = 0;
         } else {
@@ -148,12 +153,16 @@ new Vue({
 
       if (hasWon) {
         this.isFirstMove = true;
-        setTimeout(function() {
-          vm.resetFight();
-          if (confirm(message + " New Game?")) {
-            vm.isStarted = !vm.isStarted;
-          }
-        }, 200);
+        if (!this.isWaitingRestart) {
+          this.isWaitingRestart = true;
+          setTimeout(function() {
+            vm.resetFight();
+            if (confirm(message + " New Game?")) {
+              vm.isStarted = !vm.isStarted;
+            }
+            vm.isWaitingRestart = false;
+          }, 200);
+        }
       }
     },
 
