@@ -2,16 +2,26 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="index.css">
-    <title>Section 2 - Lecture 30</title>
+    <title>Section 3 - Lecture 41</title>
   </head>
   <body>
     <div id="app">
-      <div class="demo" :style="{'background-color': color}"></div>
-      <div class="demo" :style="myStyle"></div>
-      <div class="demo" :style="[myStyle, {height: width + 'px'}]"></div>
+      <ul>
+        <li v-for="(ingredient, i) in ingredients" :key="ingredient">{{ ingredient }} ({{ i }})</li>
+      </ul>
+      <button @click="ingredients.push('spices')">Add New</button>
       <hr>
-      <input type="text" v-model="color">
-      <input type="text" v-model="width">
+      <ul>
+        <li v-for="person in persons">
+          <div v-for="(value, key, index) in person">{{ key }}: {{ value }} ({{ index }})</div>
+        </li>
+      </ul>
+      <span v-for="n in 10">{{ n }}</span>
+      <hr>
+      <template v-for="(ingredient, index) in ingredients">
+        <h1>{{ ingredient }}</h1>
+        <p>{{ index }}</p>
+      </template>
     </div>
 
     <script src="../vue.js"></script>
