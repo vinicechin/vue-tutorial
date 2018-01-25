@@ -1,14 +1,22 @@
 <template>
-  <div>
-    <app-server-status v-for="server in 5"></app-server-status>
+  <div class="container">
+      <app-header></app-header>
+      <hr>
+      <servers-info></servers-info>
+      <hr>
+      <server-manager></server-manager>
   </div>
 </template>
 
 <script>
-  import ServerStatus from './ServerStatus.vue'
+  import Header from './Header.vue'
+  import ServersInfo from './ServersInfo.vue'
+  import ServerManager from './ServersManager.vue'
   export default {
     components: {
-      'app-server-status': ServerStatus
+      'app-header': Header,
+      'servers-info': ServersInfo,
+      'server-manager': ServerManager
     }
   }
 </script>
