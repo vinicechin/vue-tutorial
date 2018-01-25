@@ -8,7 +8,13 @@
 
 <script>
   export default {
-    props: ['name'],
+    props: {
+      name: {
+        type: String,
+        // required: true
+        default: 'Vinicius'
+      }
+    },
     methods: {
       switchName() {
         return this.name.split("").reverse().join("");
