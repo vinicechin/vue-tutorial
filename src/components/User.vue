@@ -4,6 +4,7 @@
         <p>I'm an awesome User!</p>
         <button @click="changeName">Change my Name</button>
         <p>Name is {{ name }}</p>
+        <p>Age is {{ age }}</p>
         <hr>
         <div class="row">
             <div class="col-xs-12 col-sm-6">
@@ -14,7 +15,7 @@
                     :userAge="age"></app-user-detail>
             </div>
             <div class="col-xs-12 col-sm-6">
-                <app-user-edit :userAge="age" @ageEdited="age = $event"></app-user-edit>
+                <app-user-edit :userAge="age"></app-user-edit>
             </div>
         </div>
     </div>
