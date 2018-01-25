@@ -4,6 +4,11 @@
 
 <script>
   export default {
+    data: function() {
+      return {
+        status: 'Critical'
+      }
+    }
   }
 </script>
 
