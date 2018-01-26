@@ -1,32 +1,59 @@
 <template>
     <div class="container">
-        <app-header></app-header>
-        <hr>
         <div class="row">
-            <servers></servers>
-            <app-server-details></app-server-details>
+            <div class="col-xs-12">
+                <br>
+                <button class="btn btn-primary" @click="selectComponent">
+                  Load Blue Template
+                </button>
+                <button class="btn btn-success" @click="selectComponent">
+                  Load Green Template
+                </button>
+                <button class="btn btn-danger" @click="selectComponent">
+                  Load Red Template
+                </button>
+                <hr>
+                <components :is="compSelected">
+                  <p>{{ color }} component</p>
+                </components>
+            </div>
         </div>
-        <hr>
-        <app-footer></app-footer>
     </div>
 </template>
 
 <script>
-    import Header from './components/Shared/Header.vue';
-    import Footer from './components/Shared/Footer.vue';
-    import Servers from './components/Server/Servers.vue';
-    import ServerDetails from './components/Server/ServerDetails.vue';
+    import Blue from './components/Blue.vue';
+    import Green from './components/Green.vue';
+    import Red from './components/Red.vue';
 
     export default {
+        data: function() {
+          return {
+            compSelected: 'appBlue',
+            color: 'Blue'
+          }
+        },
         components: {
-            appHeader: Header,
-            Servers,
-            'app-server-details': ServerDetails,
-            'app-footer': Footer
+            appBlue: Blue,
+            appGreen: Green,
+            appRed: Red
+        },
+        methods: {
+          selectComponent(event) {
+            if (event.target.classList.contains('btn-primary')) {
+              this.compSelected = 'appBlue';
+              this.color = 'Blue';              
+            } else if (event.target.classList.contains('btn-success')) {
+              this.compSelected = 'appGreen';
+              this.color = 'Green';    
+            } else {
+              this.compSelected = 'appRed';
+              this.color = 'Red';  
+            }
+          }
         }
     }
 </script>
 
 <style>
-
 </style>
