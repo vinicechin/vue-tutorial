@@ -15,6 +15,12 @@
     },
     destroyed() {
       console.log("component destroyed");
+    },
+    deactivated() {
+      console.log('component deactivated');
+    },
+    activated() {
+      console.log('component activated')
     }
   }
 </script>
