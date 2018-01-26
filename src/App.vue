@@ -1,32 +1,33 @@
 <template>
     <div class="container">
-        <app-header></app-header>
-        <hr>
         <div class="row">
-            <servers></servers>
-            <app-server-details></app-server-details>
+            <div class="col-xs-12">
+                <br>
+                <button class="btn btn-primary">Load Blue Template</button>
+                <button class="btn btn-success">Load Green Template</button>
+                <button class="btn btn-danger">Load Red Template</button>
+                <hr>
+                <app-blue></app-blue>
+                <app-green></app-green>
+                <app-red></app-red>
+            </div>
         </div>
-        <hr>
-        <app-footer></app-footer>
     </div>
 </template>
 
 <script>
-    import Header from './components/Shared/Header.vue';
-    import Footer from './components/Shared/Footer.vue';
-    import Servers from './components/Server/Servers.vue';
-    import ServerDetails from './components/Server/ServerDetails.vue';
+    import Blue from './components/Blue.vue';
+    import Green from './components/Green.vue';
+    import Red from './components/Red.vue';
 
     export default {
         components: {
-            appHeader: Header,
-            Servers,
-            'app-server-details': ServerDetails,
-            'app-footer': Footer
+            appBlue: Blue,
+            appGreen: Green,
+            appRed: Red
         }
     }
 </script>
 
 <style>
-
 </style>
