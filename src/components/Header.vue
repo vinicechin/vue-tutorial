@@ -27,4 +27,8 @@
     width: 90%;
     text-align: center;
   }
+
+  h3 {
+    font-weight: bold;
+  }
 </style>

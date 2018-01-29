@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="container-fluid">
+        <slot></slot>
     </div>
 </template>
 
@@ -10,10 +11,15 @@
 </script>
 
 <style scoped>
-  div {
-    border: 1px solid blue;
-    padding: 30px;
-    margin: 20px auto;
-    text-align: center;
+  .container-fluid {
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    padding: 0px;
+  }
+
+  .quote-item {
+    width: 25%;
   }
 </style>
