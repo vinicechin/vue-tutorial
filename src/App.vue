@@ -71,9 +71,9 @@
     },
 
     created() {
-      eventBus.$on('quoteDeleted', (quote => {
-        this.quotesList.splice(quote.index, 1);
-      }));
+      eventBus.$on('quoteDeleted', (quoteIndex) => {
+        this.quotesList.splice(quoteIndex, 1);
+      });
     },
 
     components: {

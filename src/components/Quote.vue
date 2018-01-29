@@ -14,7 +14,7 @@
 
         methods: {
             deleteQuote() {
-                eventBus.deleteQuote(this.quote);
+                eventBus.deleteQuote(this.quote.index);
             }
         }
     }
@@ -27,9 +27,13 @@
     padding: 5px;
     border: 1px solid #BBB;
     border-radius: 4px;
-    font-family: Arizonia;
+    font-family: Arizonia, cursive;
     font-size: 28px;
     color: #777;
     word-wrap: break-word;
+  }
+
+  .quote-element:hover {
+    background-color: #ffe2e2;
   }
 </style>

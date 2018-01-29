@@ -3,8 +3,8 @@ import App from './App.vue'
 
 export const eventBus = new Vue({
   methods: {
-    deleteQuote(quote) {
-      this.$emit('quoteDeleted', quote);
+    deleteQuote(quoteIndex) {
+      this.$emit('quoteDeleted', quoteIndex);
     }
   }
 })

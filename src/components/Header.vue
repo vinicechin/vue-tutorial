@@ -26,6 +26,7 @@
     color: white;
     width: 90%;
     text-align: center;
+    transition: width 500ms;
   }
 
   h3 {
