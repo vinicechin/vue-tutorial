@@ -1,56 +1,106 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <br>
-                <button class="btn btn-primary" @click="selectComponent">
-                  Load Blue Template
-                </button>
-                <button class="btn btn-success" @click="selectComponent">
-                  Load Green Template
-                </button>
-                <button class="btn btn-danger" @click="selectComponent">
-                  Load Red Template
-                </button>
-                <hr>
-                <components :is="compSelected">
-                  <p>{{ color }} component</p>
-                </components>
+        <form>
+            <div class="row" v-show="!isSubmitted">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <!-- Exercise 1 -->
+                    <!-- Create a Signup Form where you retrieve the following Information -->
+                    <!-- Full Name (First Name + Last Name) -->
+                    <!-- Mail -->
+                    <!-- Password -->
+                    <!-- Store Data? Yes/No -->
+                    <!-- Exercise 2 -->
+                    <!-- Only display the Form if it has NOT been submitted -->
+                    <!-- Display the Data Summary ONCE the Form HAS been submitted -->
+
+                    <!-- Exercise 3 -->
+                    <!-- Edit the Example from above and create a custom "Full Name" Control -->
+                    <!-- which still holds the First Name and Last Name Input Field -->
+
+
+                    <h2>
+                        Registration Form
+                    </h2>
+                    <!-- <div class="form-group">
+                        <label for="fisrtname">First Name</label>
+                        <input type="text" id="firstname" class="form-control" v-model="userData.firstname">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" id="lastname" class="form-control" v-model="userData.lastname">
+                    </div> -->
+                    <fullname v-model="userData"></fullname>
+                    <div class="form-group">
+                        <label for="mail">Mail</label>
+                        <input type="text" id="mail" class="form-control" v-model="userData.mail">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control" v-model="userData.password">
+                    </div>
+                    <div class="form-group">
+                        <label>Store in Database?</label>
+                        <br>
+                        <label for="storeYes">
+                            <input type="radio" id="storeYes" value=true v-model="isStore">
+                            Yes
+                        </label>
+                        <label for="storeNo">
+                            <input type="radio" id="storeNo" value=false v-model="isStore">
+                            No
+                        </label>
+                    </div>
+                    <button class="btn btn-primary" @click.prevent="submitForm">Submit</button>
+                </div>
+            </div>
+        </form>
+        <div class="row" v-show="isSubmitted">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Your Data</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Full Name: {{ userData.firstname }} {{ userData.lastname }}</p>
+                        <p>Mail: {{ userData.mail }}</p>
+                        <p>Password: {{ userData.password }}</p>
+                        <p>Store in Database?: {{ isStore }}</p>
+                    </div>
+                </div>
+                <button class="btn btn-primary" @click.prevent="backToForm">Back</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import Blue from './components/Blue.vue';
-    import Green from './components/Green.vue';
-    import Red from './components/Red.vue';
+    import Fullname from './Fullname.vue';
 
     export default {
-        data: function() {
-          return {
-            compSelected: 'appBlue',
-            color: 'Blue'
-          }
-        },
-        components: {
-            appBlue: Blue,
-            appGreen: Green,
-            appRed: Red
-        },
-        methods: {
-          selectComponent(event) {
-            if (event.target.classList.contains('btn-primary')) {
-              this.compSelected = 'appBlue';
-              this.color = 'Blue';              
-            } else if (event.target.classList.contains('btn-success')) {
-              this.compSelected = 'appGreen';
-              this.color = 'Green';    
-            } else {
-              this.compSelected = 'appRed';
-              this.color = 'Red';  
+        data() {
+            return {
+                userData: {
+                    firstname: '',
+                    lastname: '',
+                    mail: '',
+                    password: ''
+                },
+                isStore: false,
+                isSubmitted: false
             }
-          }
+        },
+
+        methods: {
+            submitForm() {
+                this.isSubmitted = true;
+            },
+            backToForm() {
+                this.isSubmitted = false;
+            }
+        },
+
+        components: {
+            'fullname': Fullname
         }
     }
 </script>
