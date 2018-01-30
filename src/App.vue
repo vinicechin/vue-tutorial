@@ -2,8 +2,15 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <h1 v-con:@click="setClicked">Directives Exercise</h1>
+                <h1 v-con:click="setClicked">Directives Exercise</h1>
                 <p>{{ text }}</p>
+                <hr>
+                <div 
+                    v-con:mouseenter="mouseEnter" 
+                    v-con:mouseleave="mouseLeave"
+                    style="width: 100px; height: 100px; background-color: lightgreen">
+                    
+                </div>
                 <!-- Exercise -->
                 <!-- Build a Custom Directive which works like v-on (Listen for Events) -->
 
@@ -23,12 +30,10 @@
 
         directives: {
             'con': {
-                bind(el, binding, vnode) {
-                    if (binding.arg == "@click") {
-                        el.addEventListener('click', function() {
-                            binding.value();
-                        });
-                    }
+                bind(el, binding) {
+                    const type = binding.arg;
+                    const fn = binding.value;
+                    el.addEventListener(type, fn);
                 }
             }
         },
@@ -37,6 +42,14 @@
             setClicked() {
                 this.cont++;
                 this.text = "Clicked " + this.cont + " times";
+            },
+
+            mouseEnter() {
+                console.log('Mouse entered!');
+            },
+
+            mouseLeave() {
+                console.log('Mouse left!');
             }
         }
     }
