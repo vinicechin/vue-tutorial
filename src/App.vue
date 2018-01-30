@@ -12,7 +12,7 @@
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <h1>Custom Directives</h1>
                 <p v-highlight:background.delayed="'red'">Color this</p>
-                <p v-local-highlight:background.delayed="'green'">Color this</p>
+                <p v-local-highlight:background.delayed.blink="'green'">Color this</p>
             </div>
         </div>
     </div>
@@ -28,16 +28,35 @@
               delay = 1000;
             }
 
-            setTimeout(() => {
-              if (binding.arg == 'background') {
-                //v-highlight:background
-                el.style.backgroundColor = binding.value;
-                el.style.color = 'white';
-              } else {
-                // no argument passed
-                el.style.color = binding.value;
-              }
-            }, delay);
+            if (binding.modifiers['blink']) {
+              let mainColor = binding.value;
+              let secondColor = 'blue';
+              let currentColor = mainColor;
+              el.style.color = 'white';
+              setTimeout(() => {
+                setInterval(() => {
+                  currentColor = (currentColor == secondColor) ? mainColor : secondColor;
+                  if (binding.arg == 'background') {
+                    //v-highlight:background
+                    el.style.backgroundColor = currentColor;
+                  } else {
+                    // no argument passed
+                    el.style.color = currentColor;
+                  }
+                }, 500);
+              }, delay);
+            } else {
+              setTimeout(() => {
+                if (binding.arg == 'background') {
+                  //v-highlight:background
+                  el.style.backgroundColor = binding.value;
+                  el.style.color = 'white';
+                } else {
+                  // no argument passed
+                  el.style.color = binding.value;
+                }
+              }, delay);
+            }
           }
         }
       }
