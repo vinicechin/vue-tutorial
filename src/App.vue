@@ -25,6 +25,12 @@
     import { TextMixins } from './TextMixins';
 
     export default {
+        data() {
+            return {
+              text: 'Hello'
+            }
+        },
+        
         filters: {
             reverseText(value) {
                 return value.split("").reverse().join("");

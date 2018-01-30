@@ -1,10 +1,4 @@
 export const TextMixins = {
-  data() {
-    return {
-      text: 'Hello'
-    }
-  },
-  
   computed: {
     reversedText() {
       return this.text.split("").reverse().join("");
