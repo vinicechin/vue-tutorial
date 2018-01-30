@@ -29,7 +29,7 @@
                         <label for="lastname">Last Name</label>
                         <input type="text" id="lastname" class="form-control" v-model="userData.lastname">
                     </div> -->
-                    <fullname v-model="userData"></fullname>
+                    <fullname v-model="userData.fullName"></fullname>
                     <div class="form-group">
                         <label for="mail">Mail</label>
                         <input type="text" id="mail" class="form-control" v-model="userData.mail">
@@ -50,7 +50,7 @@
                             No
                         </label>
                     </div>
-                    <button class="btn btn-primary" @click.prevent="submitForm">Submit</button>
+                    <button type="submit" class="btn btn-primary" @click.prevent="submitForm">Submit</button>
                 </div>
             </div>
         </form>
@@ -61,7 +61,7 @@
                         <h4>Your Data</h4>
                     </div>
                     <div class="panel-body">
-                        <p>Full Name: {{ userData.firstname }} {{ userData.lastname }}</p>
+                        <p>Full Name: {{ userData.fullName }}</p>
                         <p>Mail: {{ userData.mail }}</p>
                         <p>Password: {{ userData.password }}</p>
                         <p>Store in Database?: {{ isStore }}</p>
@@ -80,8 +80,7 @@
         data() {
             return {
                 userData: {
-                    firstname: '',
-                    lastname: '',
+                    fullName: '',
                     mail: '',
                     password: ''
                 },
