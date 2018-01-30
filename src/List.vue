@@ -10,24 +10,12 @@
 </template>
 
 <script>
-    export default {
-      data() {
-        return {
-          fruits: ['Apple', 'Banana', 'Mango', 'Melon'],
-          filterText: ''
-        }
-      },
+    import { FruitMixin } from './FruitMixin';
 
-      computed: {
-        filteredFruits() {
-          return this.fruits.filter((element) => {
-            return element.match(this.filterText);
-          });
-        }
-      }
+    export default {
+      mixins: [FruitMixin]
     }
 </script>
 
 <style>
-
 </style>
