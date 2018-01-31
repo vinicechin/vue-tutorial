@@ -54,13 +54,16 @@
                 <button class="btn btn-primary" @click="addItem">Add Item</button>
                 <br><br>
                 <ul class="list-group">
-                    <li 
-                        class="list-group-item" 
-                        v-for="(number, index) in numbers" 
-                        @click="removeItem(index)"
-                        style="cursor: pointer">
-                        {{ number }}
-                    </li>
+                    <transition-group name="slide">
+                        <li 
+                            class="list-group-item" 
+                            v-for="(number, index) in numbers" 
+                            @click="removeItem(index)"
+                            style="cursor: pointer"
+                            :key="number">
+                            {{ number }}
+                        </li>
+                    </transition-group>
                 </ul>
             </div>
         </div>
@@ -133,7 +136,12 @@
 
             addItem() {
                 const pos = this.numbers.length;
-                this.numbers.splice(pos, 0, this.numbers.length + 1);
+                var size = this.numbers.length;
+                if (size > 0) {
+                    this.numbers.splice(pos, 0, Math.max(...this.numbers) + 1);
+                } else {
+                    this.numbers = [1];
+                }
             },
             removeItem(index) {
                 this.numbers.splice(index, 1);
@@ -171,7 +179,7 @@
 
     .slide-enter-active {
         animation: slide-in 1s ease-out forwards;
-        transition: opacity 2s;
+        transition: opacity 1s;
     }
 
     .slide-leave {
@@ -180,8 +188,13 @@
 
     .slide-leave-active {
         animation: slide-out 1s ease-out forwards;
-        transition: opacity 2s;
+        transition: opacity 1s;
         opacity: 0;
+        position: absolute;
+    }
+
+    .slide-move {
+        transition: transform 1s;
     }
 
     @keyframes slide-in {
