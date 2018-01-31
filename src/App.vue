@@ -38,7 +38,7 @@
                     @after-leave="afterLeave"
                     @leave-cancelled="leaveCancelled"
                     :css="false">
-                    <div style="width: 100px; height: 100px; background-color: lightgreen" v-if="load">
+                    <div style="width: 300px; height: 100px; background-color: lightgreen" v-if="load">
                     </div>
                 </transition>
             </div>
@@ -52,16 +52,27 @@
             return {
                 show: false,
                 load: true,
-                alertAnimation: 'fade'
+                alertAnimation: 'fade',
+                elementWidth: 0
             }
         },
         methods: {
             beforeEnter(el) {
                 console.log('before-enter');
+                this.elementWidth = 0;
+                el.style.width = this.elementWidth + 'px';
             },
             enter(el, done) {
                 console.log('enter');
-                done();
+                let round = 1;
+                const interval = setInterval(() => {
+                    el.style.width = (this.elementWidth + round * 10) + 'px';
+                    round++;
+                    if (round > 30) {
+                        clearInterval(interval);
+                        done();
+                    }
+                }, 20);
             },
             afterEnter(el) {
                 console.log('after-enter');
@@ -71,10 +82,21 @@
             },
             beforeLeave(el) {
                 console.log('before-leave');
+                this.elementWidth = 300;
+                el.style.width = this.elementWidth + 'px';
             },
             leave(el, done) {
                 console.log('leave');
-                done();
+                console.log('enter');
+                let round = 1;
+                const interval = setInterval(() => {
+                    el.style.width = (this.elementWidth - round * 10) + 'px';
+                    round++;
+                    if (round > 30) {
+                        clearInterval(interval);
+                        done();
+                    }
+                }, 20);
             },
             afterLeave(el) {
                 console.log('after-leave');
