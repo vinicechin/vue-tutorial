@@ -57,6 +57,10 @@
 </template>
 
 <script>
+  const MIN_OPERATION_VALUE = 0;
+  const MAX_OPERATION_VALUE = 99;
+  const SUM_OP = 1;
+  const SUB_OP = 2;
   export default {
     data() {
       return {
@@ -75,7 +79,53 @@
           isCorrect = false;
         }
         this.$emit('answered', isCorrect);
+      },
+
+      generateQuestion() {
+        let op1 = this.generateRandomNumber(MIN_OPERATION_VALUE, MAX_OPERATION_VALUE);
+        let op2 = this.generateRandomNumber(MIN_OPERATION_VALUE, MAX_OPERATION_VALUE);
+        let op;
+        if (this.generateOperation() == SUM_OP) {
+          op = ' + ';
+          this.correctAnswer = op1 + op2;
+        } else {
+          op = ' - ';
+          this.correctAnswer = op1 - op2;
+        }
+        
+        this.generateAnswerOptions(op1, op2);
+        this.question = op1 + op + op2;
+      },
+
+      generateAnswerOptions() {
+        let exceptions = [this.correctAnswer];
+        let newArray = [];
+        for (let answer in this.answers) {
+          answer = this.generateRandomNumber(this.correctAnswer - 15, this.correctAnswer + 15, exceptions);
+          exceptions.push(answer);
+          newArray.push(answer);
+        }
+
+        let pos = this.generateRandomNumber(1, 6);
+        newArray[pos] = this.correctAnswer;
+        this.answers = newArray;
+      },
+
+      generateOperation() {
+        return this.generateRandomNumber(SUM_OP, SUB_OP);
+      },
+
+      generateRandomNumber(min, max, exceptions) {
+        let number = Math.floor(Math.random() * (max - min) + min);
+        if (exceptions != undefined && exceptions.includes(number)) {
+          number = this.generateRandomNumber(min, max, exceptions);
+        }
+        return number;
       }
+    },
+
+    created() {
+      this.generateQuestion();
     }
   }
 </script>
