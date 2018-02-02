@@ -8,7 +8,11 @@
     <hr>
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-        <component :is="currentComponent" @answered="showAnswer($event)" @showNewQuestion="showQuestion"></component>
+        <transition enter-active-class="animated bounceInRight" leave-active-class="animated bounceOutRight" mode="out-in">
+            <keep-alive>
+                <component :is="currentComponent" :isCorrect="isCorrect" @answered="showAnswer($event)" @showNewQuestion="showQuestion"></component>
+            </keep-alive>
+        </transition>
       </div>
     </div>
   </div>
@@ -21,7 +25,8 @@
   export default {
     data() {
       return {
-        currentComponent: 'answer-message'
+        currentComponent: 'app-question',
+        isCorrect: true
       }
     },
 
@@ -33,10 +38,11 @@
     methods: {
       showAnswer(isCorrect) {
         if (isCorrect) {
-          this.currentComponent = 'answer-message';
+            this.isCorrect = true;
         } else {
-          alert('Wrong');
+            this.isCorrect = false;
         }
+        this.currentComponent = 'answer-message';
       },
 
       showQuestion() {
@@ -45,4 +51,3 @@
     }
   }
 </script>
-

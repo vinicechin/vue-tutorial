@@ -66,7 +66,8 @@
       return {
         question: '<> + <>',
         answers: [1, 2, 3, 4, 5, 6],
-        correctAnswer: 2
+        correctAnswer: 2,
+        lastAnswer: false
       }
     },
 
@@ -78,6 +79,7 @@
         } else {
           isCorrect = false;
         }
+        this.lastAnswer = isCorrect;
         this.$emit('answered', isCorrect);
       },
 
@@ -92,7 +94,7 @@
           op = ' - ';
           this.correctAnswer = op1 - op2;
         }
-        
+
         this.generateAnswerOptions(op1, op2);
         this.question = op1 + op + op2;
       },
@@ -126,6 +128,12 @@
 
     created() {
       this.generateQuestion();
+    },
+
+    activated() {
+      if (this.lastAnswer) {
+        this.generateQuestion();
+      }
     }
   }
 </script>
