@@ -6,7 +6,8 @@ new Vue({
     isWaitingRestart: false,
     log: [],
     playerHealth: 100,
-    monsterHealth: 100
+    monsterHealth: 100,
+    turn: 0
   },
 
   computed: {
@@ -115,8 +116,8 @@ new Vue({
       }
       var vm = this;
       var value = this.playDice();
-      this.logAction(false, true, value);
       setTimeout(function() {
+        vm.logAction(false, true, value);
         value = vm.playerHealth - value;
         if (value <= 0 & vm.isStarted) {
           vm.playerHealth = 0;
@@ -168,20 +169,24 @@ new Vue({
 
     logAction: function(isPlayer, isAttack, hitPoints) {
       var action;
+      this.turn++;
       if (isPlayer) {
         if (isAttack) {
           action = {
+            id: this.turn,
             isPlayer: isPlayer,
             message: 'PLAYER hits MONSTER for ' + hitPoints
           };
         } else {
           action = {
+            id: this.turn,
             isPlayer: isPlayer,
             message: 'PLAYER heals himself for ' + hitPoints
           }
         }
       } else {
           action = {
+            id: this.turn,
             isPlayer: isPlayer,
             message: 'MONSTER hits PLAYER for ' + hitPoints
           }

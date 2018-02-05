@@ -4,6 +4,15 @@
   <title>Monster Slayer</title>
   <link rel="stylesheet" href="foundation.min.css">
   <link rel="stylesheet" href="index.css">
+  <style>
+    .fade-enter-active {
+      transition: opacity 0.5s;
+    }
+
+    .fade-enter {
+      opacity: 0;
+    }
+  </style>
 </head>
 <body>
   <div id="app">
@@ -38,15 +47,20 @@
         <button id="give-up" @click="playTurn()">GIVE UP</button>
       </div>
     </section>
-    <section class="row log" v-show="hasLogs">
-      <div class="small-12 columns">
-        <ul>
-          <li v-for="action in log" :class="{ 'player-turn': action.isPlayer, 'monster-turn': !action.isPlayer }">
-            {{ action.message }}
-          </li>
-        </ul>
-      </div>
-    </section>
+    <transition name="fade">
+      <section class="row log" v-if="hasLogs">
+        <div class="small-12 columns">
+          <ul>
+            <transition-group name="fade">
+              <li v-for="action in log" :class="{ 'player-turn': action.isPlayer, 'monster-turn': !action.isPlayer }"
+              :key="action.id">
+                {{ action.message }}
+              </li>
+            </transition-group>
+          </ul>
+        </div>
+      </section>
+    </transition>
   </div>
 
     <script src="https://npmcdn.com/vue/dist/vue.js"></script>
