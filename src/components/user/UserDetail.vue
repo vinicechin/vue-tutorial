@@ -27,6 +27,17 @@
           hash: '#data'
         }
       }
+    },
+    beforeRouteEnter(to, from, next) {
+      // here we can verify any needed information and load route or stay in the same
+      // for example: verify if logged user can access this page
+      // cant access 'this' properties because its not been created yet
+      // set hardcoded for tests
+      if (true) {
+        next();
+      } else {
+        next(false);
+      }
     }
   }
 </script>
