@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-Vue.filter('appendLength', (value) => {
-  let cont = value.split("").length;
-  return value + " (" + cont + ")";
-})
+import router from './router'
+import store from './store'
 
 new Vue({
   el: '#app',
+  router,
+  store,
   render: h => h(App)
 })
