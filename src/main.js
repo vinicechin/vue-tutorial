@@ -6,7 +6,7 @@ import router from './router'
 import store from './store'
 
 axios.defaults.baseURL = 'https://vuejs-http-8f333.firebaseio.com';
-axios.defaults.headers.common['Authorization'] = 'adasd';
+// axios.defaults.headers.common['Authorization'] = 'adasd';
 axios.defaults.headers.get['Accepts'] = 'application/json'
 
 // add interceptor
