@@ -6,12 +6,13 @@
 </template>
 
 <script>
-    import { mapMutations } from 'vuex';
+    import { mapActions } from 'vuex';
+    import * as types from '../store/types';
     export default {
         methods: {
-            ...mapMutations({
-                increment: 'increment',
-                decrement: 'decrement'
+            ...mapActions({
+                increment: types.ACTION_INCREMENT_COUNTER,
+                decrement: types.ACTION_DECREMENT_COUNTER
             })
         }
     }

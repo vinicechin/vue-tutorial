@@ -1,0 +1,18 @@
+// Getters
+export const COUNTER = 'counter/COUNTER';
+export const DOUBLE_COUNTER = 'counter/DOUBLE_COUNTER';
+export const CLICK_COUNTER = 'counter/CLICK_COUNTER';
+export const VALUE = 'shared/VALUE';
+
+// Mutations
+export const MUTATE_INCREMENT_COUNTER = 'counter/MUTATE_INCREMENT_COUNTER';
+export const MUTATE_DECREMENT_COUNTER = 'counter/MUTATE_DECREMENT_COUNTER';
+export const MUTATE_UPDATE_VALUE = 'shared/MUTATE_UPDATE_VALUE';
+
+// Actions
+export const ACTION_INCREMENT_COUNTER = 'counter/ACTION_INCREMENT_COUNTER';
+export const ACTION_INCREMENT_COUNTER_ASYNC = 'counter/ACTION_INCREMENT_COUNTER_ASYNC';
+export const ACTION_DECREMENT_COUNTER = 'counter/ACTION_DECREMENT_COUNTER';
+export const ACTION_DECREMENT_COUNTER_ASYNC = 'counter/ACTION_DECREMENT_COUNTER_ASYNC';
+export const ACTION_UPDATE_VALUE = 'shared/ACTION_UPDATE_VALUE';
+

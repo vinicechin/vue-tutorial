@@ -7,11 +7,12 @@
 
 <script>
     import { mapActions } from 'vuex';
+    import * as types from '../store/types';
     export default {
         methods: {
             ...mapActions({
-                increment: 'asyncIncrement',
-                decrement: 'asyncDecrement'
+                increment: types.ACTION_INCREMENT_COUNTER_ASYNC,
+                decrement: types.ACTION_DECREMENT_COUNTER_ASYNC
             }),
 
         }
