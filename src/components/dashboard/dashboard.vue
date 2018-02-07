@@ -5,6 +5,17 @@
   </div>
 </template>
 
+<script>
+  import axios from 'axios';
+  export default {
+    created() {
+      axios.get('https://vuejs-http-8f333.firebaseio.com/users.json')
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
+    }
+  }
+</script>
+
 <style scoped>
   h1, p {
     text-align: center;
