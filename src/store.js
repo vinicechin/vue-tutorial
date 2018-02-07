@@ -7,10 +7,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     idToken: null,
-    userID: null
+    userId: null
   },
   mutations: {
-
+    authUser(state, userData) {
+      state.idToken = userData.token;
+      state.userId = userData.userId;
+    }
   },
   actions: {
     signup({commit}, authData) {
@@ -19,7 +22,13 @@ export default new Vuex.Store({
         password: authData.password,
         returnSecureToken: true
       })
-        .then(res => console.log(res))
+        .then(res => {
+          console.log(res);
+          commit('authUser', {
+            token: res.data.idToken,
+            userId: res.data.localId
+          })
+        })
         .catch(error => console.log(error));
     },
     login({commit}, authData) {
@@ -28,7 +37,13 @@ export default new Vuex.Store({
         password: authData.password,
         returnSecureToken: true
       })
-        .then(res => console.log(res))
+        .then(res => {
+          console.log(res);
+          commit('authUser', {
+            token: res.data.idToken,
+            userId: res.data.localId
+          })
+        })
         .catch(error => console.log(error));
     }
   },
