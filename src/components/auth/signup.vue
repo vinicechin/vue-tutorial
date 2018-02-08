@@ -88,6 +88,8 @@
 
 <script>
   import { required, email, numeric, minValue, minLength, sameAs, requiredUnless } from 'vuelidate/lib/validators'
+  import axios from 'axios'
+
   export default {
     data () {
       return {
@@ -105,7 +107,11 @@
         required, // required: required,
         email, // email: email
         unique: value => {
-          return value !== 'teste@teste.com';
+          if (value === '') return true;
+          return axios.get('/users.json?orderBy="email"&equalTo="' + value + '"')
+            .then(res => {
+              return Object.keys(res.data).length === 0;
+            })
         }
       },
       age: {
