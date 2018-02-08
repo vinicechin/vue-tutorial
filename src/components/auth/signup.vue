@@ -103,7 +103,10 @@
     validations: {
       email: {
         required, // required: required,
-        email // email: email
+        email, // email: email
+        unique: value => {
+          return value !== 'teste@teste.com';
+        }
       },
       age: {
         required,
